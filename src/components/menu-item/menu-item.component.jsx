@@ -5,7 +5,7 @@ import './menu-item.styles.scss';
 import { withRouter } from 'react-router-dom';
 
 //functional since we do not need our component to hold any state
-const MenuItem = ({ title, imageUrl, size, history, linkUrl, match }) => (
+const MenuItem = ({ title, imageUrl, history, match, size, linkUrl }) => (
   <div
     className={`${size} menu-item`}
     onClick={() => {
