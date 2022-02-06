@@ -1,16 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
-import { Provider } from 'react-redux';
-
 import './index.css';
 import App from './App';
+
+//for Redux
+import { Provider } from 'react-redux';
+import store from './redux/store';
+
 import { BrowserRouter, HashRouter } from 'react-router-dom';
 
 ReactDOM.render(
   <React.StrictMode>
     {/* parent of everything within our application so everything has access to the store  */}
-    <Provider>
+    <Provider store={store}>
       <BrowserRouter>
         <App />
       </BrowserRouter>

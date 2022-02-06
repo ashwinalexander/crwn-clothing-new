@@ -4,6 +4,9 @@ import { Link } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../assets/crown.svg';
 import { auth } from '../../firebase/firebase.utils';
 
+//higher order component to let us get access to redux store
+import { connect } from 'react-redux';
+
 const Header = ({ currentUser }) => (
   <div className='header'>
     <Link className='logo-container' to='/'>
@@ -30,4 +33,12 @@ const Header = ({ currentUser }) => (
   </div>
 );
 
-export default Header;
+//anytime the store is updated, this function is called and state is updated
+//this is the easy part - this is just consuming state
+const mapStateToProps = (state) => ({
+  currentUser: state.user.current,
+});
+
+//connect connects a React component to the Redux store
+//higher order component right here
+export default connect(mapStateToProps)(Header);
