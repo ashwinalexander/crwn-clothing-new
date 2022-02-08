@@ -36,7 +36,7 @@ const Header = ({ currentUser }) => (
 //anytime the store is updated, this function is called and state is updated
 //this is the easy part - this is just consuming state
 const mapStateToProps = (state) => ({
-  currentUser: state.user.current,
+  currentUser: state.user.currentUser,
 });
 
 //connect connects a React component to the Redux store
