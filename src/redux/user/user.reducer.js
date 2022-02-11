@@ -4,6 +4,8 @@
 
 //think of this as a getter action
 
+import { UserActionTypes } from './user.types';
+
 const INTIAL_STATE = {
   currentUser: null,
 };
@@ -11,7 +13,7 @@ const INTIAL_STATE = {
 //default ES6 feature meaning that if state is ever undefined it will fall back and leverage the default state
 const userReducer = (state = INTIAL_STATE, action) => {
   switch (action.type) {
-    case 'SET_CURRENT_USER':
+    case UserActionTypes.SET_CURRENT_USER:
       return {
         ...state, //stuff that is already in the state
         currentUser: action.payload,
