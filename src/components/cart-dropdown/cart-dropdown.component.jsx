@@ -3,6 +3,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import { selectCartItems } from '../../redux/cart/cart.selectors';
 import CartItem from '../cart-item/cart-item.component';
 import CustomButton from '../custom-button/custom-button.component';
 import './cart-dropdown.styles.scss';
@@ -18,8 +19,20 @@ const CartDropdown = ({ cartItems }) => (
   </div>
 );
 
-const mapStateToProps = ({ cart: { cartItems } }) => ({
-  cartItems,
+//using Redux selectors (compare with another one used in the cart icon component below)
+//makes sure that this dropdown only gets re-rendered when state changes specific to it happen.
+//unrelated state changes will not trigger a re-render
+const mapStateToProps = (state) => ({
+  cartItems: selectCartItems(state),
 });
+
+// //this is a selector = pulls in the full state and then uses only a slice of that state
+// const mapStateToProps = (state) => {
+//   //if the cart items don't actually change and if the output of selector doesn't change we don't want to rerender
+//   return {
+//     //  itemCount: cartItems.reduce((acc, cartItem) => cartItem.quantity + acc, 0),
+//     itemCount: selectCartItemsCount(state),
+//   };
+// };
 
 export default connect(mapStateToProps)(CartDropdown);
