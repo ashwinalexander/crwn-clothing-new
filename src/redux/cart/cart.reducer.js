@@ -4,9 +4,11 @@
 
 //think of this as a getter action
 import { CartActionTypes } from './cart.types';
+import { addItemToCart } from './cart.utils';
 
 const INTIAL_STATE = {
   hidden: true,
+  cartItems: [],
 };
 
 const cartReducer = (state = INTIAL_STATE, action) => {
@@ -15,6 +17,13 @@ const cartReducer = (state = INTIAL_STATE, action) => {
       return {
         ...state, //stuff that is already in the state
         hidden: !state.hidden,
+      };
+
+    case CartActionTypes.ADD_ITEM:
+      return {
+        ...state, //stuff that is already in the state
+        // cartItems: [...state.cartItems, action.payload], (used this before we setup the utils function)
+        cartItems: addItemToCart(state.cartItems, action.payload),
       };
 
     default:
