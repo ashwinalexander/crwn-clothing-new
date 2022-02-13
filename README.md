@@ -4,4 +4,4 @@ React-based E-commerce application. Concepts learnt so far:
   - React Router
   - React Forms
   - Authentication with Firebase
-  - Redux Concepts
+  - Redux 
