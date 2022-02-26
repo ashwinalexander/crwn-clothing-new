@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 
-//input selector = doesn't use createSelector (goes one level deep in state)
+//input selector = doesn't use createSelector (goes one level deep / one slice of state)
 const selectCart = (state) => state.cart;
 
 //output selector = uses createSelector - takes an array of input selectors AND function that returns the value we want out of the selector
@@ -9,6 +9,11 @@ const selectCart = (state) => state.cart;
 export const selectCartItems = createSelector(
   [selectCart],
   (cart) => cart.cartItems
+);
+
+export const selectCartHidden = createSelector(
+  [selectCart],
+  (cart) => cart.hidden
 );
 
 export const selectCartItemsCount = createSelector(
@@ -20,3 +25,5 @@ export const selectCartItemsCount = createSelector(
       0
     )
 );
+
+//a selector is just a slice of state - and it can also be transformed - and is always memoized

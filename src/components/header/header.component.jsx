@@ -8,6 +8,9 @@ import CartDropdown from '../cart-dropdown/cart-dropdown.component';
 
 //higher order component to let us get access to redux store
 import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import { selectCartHidden } from '../../redux/cart/cart.selectors';
+import { selectCurrentUser } from '../../redux/user/user.selector';
 
 const Header = ({ currentUser, hidden }) => (
   <div className='header'>
@@ -38,9 +41,15 @@ const Header = ({ currentUser, hidden }) => (
 
 //anytime the store is updated, this function is called and state is updated
 //this is the easy part - this is just consuming state
-const mapStateToProps = ({ user: { currentUser }, cart: { hidden } }) => ({
-  currentUser,
-  hidden,
+// const mapStateToProps = (state) => ({
+//   currentUser: selectCurrentUser(state),
+//   hidden: selectCartHidden(state),
+// });
+
+//alt approach with createStructuredSelector = this automatically passes top-level state that we get from mapStateToProps
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser,
+  hidden: selectCartHidden,
 });
 
 //connect connects a React component to the Redux store
