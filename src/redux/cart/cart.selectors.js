@@ -20,10 +20,18 @@ export const selectCartItemsCount = createSelector(
   [selectCartItems],
   (cartItems) =>
     cartItems.reduce(
-      (accumalatedQuantity, cartItem) =>
-        accumalatedQuantity + cartItem.quantity,
+      (accumulatedQuantity, cartItem) =>
+        accumulatedQuantity + cartItem.quantity,
       0
     )
+);
+
+export const selectCartTotal = createSelector([selectCartItems], (cartItems) =>
+  cartItems.reduce(
+    (accumulatedPrice, cartItem) =>
+      accumulatedPrice + cartItem.quantity * cartItem.price,
+    0
+  )
 );
 
 //a selector is just a slice of state - and it can also be transformed - and is always memoized
