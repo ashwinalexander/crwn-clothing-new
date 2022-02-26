@@ -4,7 +4,7 @@
 
 //think of this as a getter action
 import { CartActionTypes } from './cart.types';
-import { addItemToCart } from './cart.utils';
+import { addItemToCart, removeItemFromCart } from './cart.utils';
 
 const INTIAL_STATE = {
   hidden: true,
@@ -19,11 +19,25 @@ const cartReducer = (state = INTIAL_STATE, action) => {
         hidden: !state.hidden,
       };
 
+    case CartActionTypes.CLEAR_ITEM_FROM_CART:
+      return {
+        ...state,
+        cartItems: state.cartItems.filter(
+          (cartItem) => cartItem.id !== action.payload.id
+        ),
+      };
+
     case CartActionTypes.ADD_ITEM:
       return {
         ...state, //stuff that is already in the state
         // cartItems: [...state.cartItems, action.payload], (used this before we setup the utils function)
         cartItems: addItemToCart(state.cartItems, action.payload),
+      };
+
+    case CartActionTypes.REMOVE_ITEM:
+      return {
+        ...state, //stuff that is already in the state
+        cartItems: removeItemFromCart(state.cartItems, action.payload),
       };
 
     default:
