@@ -9,6 +9,8 @@ import storage from 'redux-persist/lib/storage';
 
 import userReducer from './user/user.reducer';
 import cartReducer from './cart/cart.reducer';
+import directoryReducer from './directory/directory.reducer';
+import shopReducer from './shop/shop.reducer';
 
 // The reason why a redux reducer is called a reducer is because you could "reduce" a collection of actions and an initial state (of the store) on which to perform these actions to get the resulting final state.
 //reducer is like reduce in javascript - takes many inputs, returns one single value
@@ -24,6 +26,8 @@ const persistConfig = {
 const rootReducer = combineReducers({
   user: userReducer,
   cart: cartReducer,
+  directory: directoryReducer,
+  shop: shopReducer,
 });
 
 export default persistReducer(persistConfig, rootReducer);

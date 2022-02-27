@@ -6,12 +6,12 @@
 
 import { UserActionTypes } from './user.types';
 
-const INTIAL_STATE = {
+const INITIAL_STATE = {
   currentUser: null,
 };
 
 //default ES6 feature meaning that if state is ever undefined it will fall back and leverage the default state
-const userReducer = (state = INTIAL_STATE, action) => {
+const userReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case UserActionTypes.SET_CURRENT_USER:
       return {
